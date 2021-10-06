@@ -27,7 +27,11 @@ const contactsSlice = createSlice({
                 state.items = state.items.filter(({ id }) => id !== action.payload);
             })
             .addMatcher(
-                isAnyOf(fetchContacts.pending, addContact.pending, deleteContact.pending),
+                isAnyOf(
+                    fetchContacts.pending,
+                    addContact.pending,
+                    deleteContact.pending
+                ),
                 state => {
                     state.isLoading = true;
                     state.error = null;
@@ -47,7 +51,11 @@ const contactsSlice = createSlice({
                 },
             )
             .addMatcher(
-                isAnyOf(fetchContacts.rejected, addContact.rejected, deleteContact.rejected),
+                isAnyOf(
+                    fetchContacts.rejected,
+                    addContact.rejected,
+                    deleteContact.rejected
+                ),
                 (state, action) => {
                     state.error = action.payload;
 
