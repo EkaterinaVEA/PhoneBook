@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.section`
-  padding: 40px 0;
+  padding: 60px 0;
 `;
 export const Title = styled.h2`
   margin: 0 auto 50px;

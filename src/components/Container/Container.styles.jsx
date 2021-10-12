@@ -7,7 +7,7 @@ export const Main = styled.div`
   margin: 0 auto;
   padding: 30px;
   border-radius: 20px;
-  box-shadow: -10px -10px 30px 0 #ffffff, 10px 10px 30px 0 #aeaec040;
+  box-shadow: -10px -10px 30px 0 #ffffff, 10px 10px 30px 0 #aeaec080;
   background-color: #f0f0f3;
   & h1,
   h2 {

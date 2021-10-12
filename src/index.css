@@ -1,40 +1,39 @@
 @import-normalize;
 :root {
-  --dark: #727273;
-  --grey: #aaabad;
+    --dark: #727273;
+    --grey: #aaabad;
+    --color-accent: #ff4500;
 }
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-color: #f0f0f3;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+        'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #f0f0f3;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 img {
-  display: block;
-  max-width: 100%;
-  height: auto;
+    display: block;
+    max-width: 100%;
+    height: auto;
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 ul,
 ol {
-  padding: 0;
-  margin: 0;
+    padding: 0;
+    margin: 0;
 
-  list-style: none;
+    list-style: none;
 }
 
 h1,
@@ -44,5 +43,9 @@ h4,
 h5,
 h6,
 p {
-  margin: 0;
+    margin: 0;
+}
+
+.MuiButton-root.Mui-disabled {
+    color: #3c3c3c;
 }

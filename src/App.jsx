@@ -1,48 +1,72 @@
-import { useEffect } from 'react';
-import { RiContactsFill, RiUserAddFill } from 'react-icons/ri';
-import Section from './components/Section/Section';
-import Container from './components/Container/Container';
-import PhoneBookForm from './components/PhoneBookForm/PhoneBookForm';
-import PhoneBookList from './components/PhoneBookList/PhoneBookList';
-import Filter from './components/Filter/Filter';
-import { Loader } from './components/Loader/Loader';
-import { useSelector, useDispatch } from 'react-redux';
-import { contactsOperations, contactsSelectors } from './redux/contacts';
-import { ContainerContacts, ContainerAdd } from './components/Container/Container.styles';
+import { lazy, Suspense, useEffect } from "react";
+import { Switch } from "react-router-dom";
+import AppBar from "./components/AppBar/AppBar";
+import { useDispatch} from "react-redux";
+import { authOperations,} from "./redux/auth";
+import PrivateRoute from "./components/PrivateRoute";
+import PublicRoute from "./components/PublicRoute";
+import { Loader } from "./components/Loader/Loader";
+
+const HomePage = lazy(() =>
+  import("./pages/HomePage/HomePage")
+);
+
+const ContactsPage = lazy(() =>
+  import(
+    "./pages/ContactsPage/ContactsPage"
+  )
+);
+
+const RegisterPage = lazy(() =>
+  import(
+    "./pages/RegisterPage/RegisterPage"
+  )
+);
+
+const LoginPage = lazy(() =>
+  import("./pages/LoginPage/LoginPage")
+);
 
 const App = () => {
-    const contacts = useSelector(contactsSelectors.getContacts);
-    const isLoading = useSelector(contactsSelectors.getIsLoading);
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(contactsOperations.fetchContacts());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(authOperations.getCurrentUser());
+  }, [dispatch]);
 
-    return (
-        <>
-            <Section title="Phone Book">
-                <Container>
-                    <ContainerAdd>
-                        <h1>
-                            <RiUserAddFill /> Add Contact
-                        </h1>
-                        <PhoneBookForm />
-                    </ContainerAdd>
+  return (
+    <>
+      <AppBar />
+          <Suspense fallback={<Loader />}>
+            <Switch>
+              <PublicRoute exact path={"/"}                
+              restricted
+              redirectTo="/contacts"
+              >
+                <HomePage />
+              </PublicRoute>
 
-                    <ContainerContacts>
-                        <h2>
-                            <RiContactsFill />
-                            Contacts
-                        </h2>
-                        <Filter />
-                        {contacts.length > 0 && <PhoneBookList />}
-                    </ContainerContacts>
-                </Container>
-            </Section>
-            <Loader loading={isLoading} />
-        </>
-    );
+              <PublicRoute path={"/register"}
+              restricted
+              redirectTo="/contacts"
+              >
+                <RegisterPage />
+              </PublicRoute>
+
+              <PublicRoute path={"/login"}
+              restricted
+              redirectTo="/contacts"
+              >
+                <LoginPage />
+              </PublicRoute>
+
+              <PrivateRoute path={"/contacts"} redirectTo="/login">
+                <ContactsPage />
+              </PrivateRoute>          
+            </Switch>
+          </Suspense>
+    </>
+  );
 };
 
 export default App;

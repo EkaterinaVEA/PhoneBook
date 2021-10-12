@@ -18,11 +18,11 @@ export const Item = styled.li`
     }
     & svg {
       margin-right: 15px;
-      color: var(--dark);
+      color: var(--color-accent);
     }
   }
   & svg {
-    color: var(--dark);
+    color: var(--color-accent);
   }
 `;
 
@@ -39,6 +39,7 @@ export const Button = styled.button`
   background-color: transparent;
   transition: all 250ms ease;
   &:hover {
-    border: 1px solid var(--dark);
+    border: 1px solid var(--color-accent);
+    color: var(--color-accent);
   }
 `;
